@@ -10,11 +10,26 @@ const CartItem = props => (
     {value => {
       const {removeCartItem} = value
       const {cartItemDetails} = props
-      const {id, title, brand, quantity, price, imageUrl} = cartItemDetails
+      const {
+        id,
+        title,
+        brand,
+        quantity,
+        price,
+        imageUrl,
+        incrementCartItemQuantity,
+        decrementCartItemQuantity,
+      } = cartItemDetails
       const onRemoveCartItem = () => {
         removeCartItem(id)
       }
-      // TODO: Update the functionality to increment and decrement quantity of the cart item
+      const onIncrementCartItemQty = () => {
+        incrementCartItemQuantity(id)
+      }
+
+      const onDecrementCartItemQty = () => {
+        decrementCartItemQuantity(id)
+      }
 
       return (
         <li className="cart-item">
@@ -25,12 +40,20 @@ const CartItem = props => (
               <p className="cart-product-brand">by {brand}</p>
             </div>
             <div className="cart-quantity-container">
-              <button type="button" className="quantity-controller-button">
+              <button
+                type="button"
+                className="quantity-controller-button"
+                onClick={onDecrementCartItemQty}
+              >
                 <span>Decrease Quantity</span>
                 <BsDashSquare color="#52606D" size={12} />
               </button>
               <p className="cart-quantity">{quantity}</p>
-              <button type="button" className="quantity-controller-button">
+              <button
+                type="button"
+                className="quantity-controller-button"
+                onClick={onIncrementCartItemQty}
+              >
                 <span>Increase Quantity</span>
                 <BsPlusSquare color="#52606D" size={12} />
               </button>
